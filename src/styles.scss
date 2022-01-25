@@ -66,8 +66,26 @@ body{
     right: -50px;
 
   }
+  .delete{
+    overflow: hidden;
+    cursor: pointer;
+    transition: right 0.5s 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    position: absolute;
+    top: 0;
+    right: -50px;
+
+  }
   &:hover .icon{
     right: 0;
+  }
+  &:hover .delete{
+    right: 40px;
   }
 
   img{

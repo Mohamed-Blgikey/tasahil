@@ -19,6 +19,10 @@ export class HttpService {
     return this.http.post(this.fullPath(endPoint),obj);
   }
 
+  Delete(endPoint:string,obj:any):Observable<any>{
+    return this.http.delete(this.fullPath(endPoint),obj);
+  }
+
 
   private fullPath(endPoint:string):string{
     return environment.BaseUrl + endPoint;

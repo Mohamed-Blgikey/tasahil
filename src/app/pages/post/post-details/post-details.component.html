@@ -32,8 +32,11 @@
          {{post?.puplishDate|date:'EEEE, MMMM d, y -- h:mm a'}}
        </div>
        <div class="icon bg-info m-2  text-white">
-         <button mat-raised-button class="bg-info text-white"><i class="far fa-bookmark"></i></button>
+           <button (click)="saveIt()" mat-raised-button class="bg-info text-white"><i class="fas fa-plus-circle"></i></button>
        </div>
+       <div class="delete bg-info m-2  text-white">
+        <button (click)="unSaveIt()" mat-raised-button class="bg-danger text-white"><i class="fas fa-minus-circle"></i></button>
+    </div>
      </mat-card>
     </div>
    </div>

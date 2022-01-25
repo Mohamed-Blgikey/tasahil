@@ -1,3 +1,5 @@
 export const SavedPosts = {
-  GetSaved :'/GetSaved'
+  GetSaved :'/GetSaved',
+  Saved:'/Saved',
+  unSaved:'/unSaved'
 }
