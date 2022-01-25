@@ -1,0 +1,32 @@
+<div class="login">
+ <div class="w-75">
+    <div style="font-size: 50px;">Login</div>
+  <form [formGroup]="loginForm" class="form p-5 rounded w-100" (ngSubmit)="login(loginForm)">
+    <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName='email' type="email" matInput  placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input formControlName='password' type="password" matInput  placeholder="Ex. Pa$$w0rd">
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-group" *ngIf="error">
+        <p class="text-danger">{{error}}</p>
+    </div>
+
+    <button class="w-100 bg-info" [disabled]="loginForm.invalid" mat-raised-button>Login</button>
+  </form>
+ </div>
+</div>

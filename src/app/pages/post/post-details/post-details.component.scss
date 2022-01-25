@@ -1,0 +1,22 @@
+.comments{
+  max-height: 50vh;
+  overflow-y: auto;
+  color: white;
+
+  .user{
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
+    .date{
+      padding: 10px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  .content{
+    color: black;
+    background-color: rgba($color: white, $alpha: 0.5);
+    border-radius: 0px 0px 10px 10px ;
+
+  }
+}

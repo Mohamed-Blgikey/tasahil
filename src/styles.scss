@@ -1,1 +1,129 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+
+
+.bg-opBlack{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+html, body { height: 100%; }
+body{
+  font-weight: bold;
+  // background-color: rgb(187, 185, 185);
+  background-image: url(../src/assets/photo-1620714223084-8fcacc6dfd8d.jfif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+*{
+  font-family: 'Luxurious Roman', cursive;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.post-card {
+  color: white;
+  max-width: 500px;
+
+  position: relative;
+  overflow: hidden;
+  .post-header-image {
+    background-size: cover;
+  }
+  .date{
+    color: white;
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    transition: all 0.5s 0.5s ease-in-out;
+  }
+
+  &:hover .date{
+    bottom: 0;
+  }
+  .icon{
+    overflow: hidden;
+    cursor: pointer;
+    transition: right 0.5s 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    position: absolute;
+    top: 0;
+    right: -50px;
+
+  }
+  &:hover .icon{
+    right: 0;
+  }
+
+  img{
+    transition: all 0.5s  ease-in-out;
+  }
+  &:hover img{
+    transform: scale(1.1);
+  }
+}
+
+
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100px;
+  color: white;
+  font-family: 'Raleway';
+  font-size: 2.5rem;
+}
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+
+
+

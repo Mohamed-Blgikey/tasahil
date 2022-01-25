@@ -1,0 +1,79 @@
+<div>
+  <div class="row pt-5">
+    <div class="col-md-6 mt-5">
+    <div>
+     <mat-card class="post-card mx-auto bg-opBlack">
+       <mat-card-header>
+         <div style="cursor: pointer;" [routerLink]="['/userDetails',post?.applicationUser?.id]" mat-card-avatar class="post-header-image" [ngStyle]="{backgroundImage:'url('+imgPrefix+post?.applicationUser?.photoName+')' }"></div>
+         <mat-card-title style="cursor: pointer;" [routerLink]="['/userDetails',post?.applicationUser?.id]">{{post?.applicationUser?.userName}}</mat-card-title>
+         <mat-card-subtitle class="text-white">{{post?.title}}</mat-card-subtitle>
+       </mat-card-header>
+       <img mat-card-image style="max-height: 200px;" [src]="imgPrefix+post?.photoName" alt="Photo of a Shiba Inu">
+       <div class="row">
+         <div class="col-8">
+           <mat-card-content>
+             <p>
+               {{post?.price|currency}}
+             </p>
+             <p>
+               {{post?.description}}
+             </p>
+           </mat-card-content>
+         </div>
+         <div class="col-4 text-center">
+           <mat-card-actions>
+             <button [routerLink]="[ '/post', post?.cateId ]" mat-raised-button class="bg-info text-white">Back</button>
+           </mat-card-actions>
+         </div>
+       </div>
+
+
+       <div class="date rounded bg-info">
+         {{post?.puplishDate|date:'EEEE, MMMM d, y -- h:mm a'}}
+       </div>
+       <div class="icon bg-info m-2  text-white">
+         <button mat-raised-button class="bg-info text-white"><i class="far fa-bookmark"></i></button>
+       </div>
+     </mat-card>
+    </div>
+   </div>
+
+  <div class="col-md-6 pt-3 mt-5">
+    <div class="mt-5 pt-5 px-2 rounded comments ">
+      <div>
+        <div style="font-size: 30px;" class="bg-opBlack rounded p-3">Comments :    </div>
+        <div class="w-100 py-5" *ngIf="!(comments.length > 0)">
+          <div class="gradient-border mx-auto" id="box">0 Comments <i class=" ml-2 far fa-frown"></i></div>
+        </div>
+
+
+
+
+        <div *ngIf="comments.length > 0" class="pt-5 ">
+          <div *ngFor="let comment of comments" class="p-2 mt-2 ">
+            <div class="user p-1 bg-opBlack ">
+              <div style="cursor: pointer;" [routerLink]="['/userDetails',comment?.applicationUser?.id]">
+                <img  style="height: 40px;  width: 40px;border-radius: 50%;" [src]="imgPrefix+comment.applicationUser.photoName" alt="">
+                {{comment.applicationUser.userName}}
+
+              </div>
+              <div class="date">{{comment.commentDate|date:' MMM d,y- h:mm a'}}</div>
+            </div>
+
+            <div class="content p-2 ">
+              {{comment.commentContent}}
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+     </div>
+  </div>
+
+  </div>
+</div>

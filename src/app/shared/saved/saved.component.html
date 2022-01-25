@@ -1,0 +1,19 @@
+<div class="sideBar" *ngIf="valid"  [ngStyle]="{left: show ? '0px' : width}" >
+  <div class="content  py-5 h-100 bg-opBlack">
+    <div class="mx-auto w-75 py-5 text-white text-center" *ngIf="!(saved.length > 0)">
+      <div class="gradient-border mx-auto">0 Saved posts<i class="far fa-frown"></i> </div>
+    </div>
+    <div class=" h-100 overflow-auto p-3">
+      <a style="text-decoration: dotted; color: black;"  *ngFor="let item of saved" [routerLink]="[ '/postDetails', item.postId ]">
+        <div class="rounded bg-white mt-2 p-1" >
+          <img style="width: 100%;height: 100px;" class="rounded" [src]="imgPrefix+item?.post?.photoName" [alt]="item?.userName"> <br> <span style="font-weight: 800; font-size: 16px;">{{item?.post?.title}}</span>
+        </div>
+      </a>
+
+    </div>
+    <div class="icon bg-info" (click)="toggel()">
+      <i class="far fa-bookmark"></i>
+    </div>
+  </div>
+
+</div>

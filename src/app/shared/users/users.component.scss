@@ -1,0 +1,40 @@
+.sideBar{
+  transition: all 1s ease-in-out;
+  position: fixed;
+  z-index: 99;
+  width: 25vw;
+  height: 50vh;
+}
+
+.content{
+  position: relative;
+}
+
+.content .icon{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 100px;
+  left: 100% ;
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+
+}
+
+@media screen and (max-width: 992px) {
+  .sideBar{
+    width: 75vw;
+  }
+
+}
+
+@media screen and (min-width: 992px) {
+  .sideBar{
+    width: 25vw;
+  }
+
+}
