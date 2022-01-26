@@ -1,4 +1,4 @@
-import { HttpService } from '../../core/Services/http.service';
+import { HttpService } from '../../../core/Services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from 'src/app/core/Apis/Auth';
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     email:new FormControl(null,[Validators.required,Validators.email]),
     password:new FormControl(null,[Validators.required])
   })
+
   constructor(private _HttpService:HttpService,private _rotue:Router,private _AuthService:AuthService) { }
 
   ngOnInit(): void {

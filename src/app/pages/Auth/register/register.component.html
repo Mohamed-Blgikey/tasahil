@@ -1,0 +1,82 @@
+<div class="signUp">
+  <div class="w-75">
+     <div style="font-size: 50px;">Register</div>
+   <form [formGroup]="signUpForm" class="form p-5 rounded w-100" (ngSubmit)="signUp(signUpForm)">
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+       <mat-label>userName</mat-label>
+       <input formControlName='userName' type="text" matInput>
+       <mat-error *ngIf="signUpForm.get('userName')?.hasError('pattern')">
+        Username '{{signUpForm.controls['userName'].value}}' is invalid, can only contain letters or digits.,
+       </mat-error>
+       <mat-error *ngIf="signUpForm.get('userName')?.hasError('required')">
+        UserName is <strong>required</strong>
+       </mat-error>
+
+       <mat-error *ngIf="signUpForm.get('userName')?.hasError('minlength')">
+        Min Length is <strong>2</strong>
+       </mat-error>
+     </mat-form-field>
+
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input formControlName='email' type="email" matInput  placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+       <mat-label>Password</mat-label>
+       <input formControlName='password' type="password" matInput  placeholder="Ex. Pa$$w0rd">
+       <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+         password is <strong>required</strong>
+       </mat-error>
+
+       <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+        Min Length is <strong>6</strong>
+       </mat-error>
+
+     </mat-form-field>
+
+
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input formControlName='phone' type="text" matInput  placeholder="Digit Only and pattern 01(nine number)">
+      <mat-error *ngIf="signUpForm.get('phone')?.hasError('required')">
+        phone is <strong>required</strong>
+      </mat-error>
+
+      <mat-error *ngIf="signUpForm.get('phone')?.hasError('pattern')">
+        Digit Only and pattern  <strong>01(nine number)</strong>
+      </mat-error>
+
+    </mat-form-field>
+
+
+
+
+    <div class="form-group mb-4">
+      <input (change)="GetFile($event)"  style="background-color: rgba(0,0,0, 0.1); border: 0px;" class="form-control" type="file" formControlName='photoName'>
+      <div class="alert" *ngIf='signUpForm.get("photoName")?.errors != null && signUpForm.get("photoName")?.touched'  class="text-danger">
+        photoName is <strong>required</strong>
+
+      </div>
+    </div>
+
+
+    <section class="mb-4">
+      <mat-checkbox formControlName='isAgree' class="example-margin">isAgree</mat-checkbox>
+    </section>
+
+     <div class="form-group" *ngIf="error">
+         <p class="text-danger">{{error}}</p>
+     </div>
+
+     <button class="w-100 bg-info" [disabled]="signUpForm.invalid" mat-raised-button>sign Up</button>
+   </form>
+  </div>
+ </div>

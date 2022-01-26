@@ -7,9 +7,10 @@ import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '../material/material.module';
 import { PostComponent } from './post/post.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './post/add-post/add-post.component';
+import { RegisterComponent } from './Auth/register/register.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AddPostComponent } from './post/add-post/add-post.component';
     PostDetailsComponent,
     UserDetailsComponent,
     LoginComponent,
-    AddPostComponent
+    AddPostComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { AddPostComponent } from './post/add-post/add-post.component';
     PostDetailsComponent,
     UserDetailsComponent,
     LoginComponent,
-    AddPostComponent
+    AddPostComponent,
+    RegisterComponent
   ]
 })
 export class PagesModule { }

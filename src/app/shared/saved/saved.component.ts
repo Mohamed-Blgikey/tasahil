@@ -21,22 +21,25 @@ export class SavedComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._AuthService.user.subscribe(()=>{
-      if (this._AuthService.user.getValue() != null) {
-        this._HttpService.Get(SavedPosts.GetSaved).subscribe(res=>{
-          this.saved =res.data
-          this.saved = this.saved.filter(s=>s.applicationUserId == this._AuthService.user['_value'].nameid)
-          this.valid = true;
-          // console.log(this.saved);
-        })
+    this._HttpService.sPost.subscribe(()=>{
+      this._AuthService.user.subscribe(()=>{
+        if (this._AuthService.user.getValue() != null) {
+          this._HttpService.Get(SavedPosts.GetSaved).subscribe(res=>{
+            this.saved =res.data
+            this.saved = this.saved.filter(s=>s.applicationUserId == this._AuthService.user['_value'].nameid)
+            this.valid = true;
+            // console.log(this.saved);
+          })
 
-      }
-      else{
-        this.valid = false;
-        this.saved = [];
-      }
-      let box = document.querySelector('.sideBar')?.clientWidth;
-      this.width = `-${box}px`;
+        }
+        else{
+          this.valid = false;
+          this.saved = [];
+        }
+        let box = document.querySelector('.sideBar')?.clientWidth;
+        this.width = `-${box}px`;
+      })
+
     })
 
   }

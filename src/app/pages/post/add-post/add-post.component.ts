@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Posts } from './../../../core/Apis/Posts';
 import { Categories } from './../../../core/Apis/Category';
 import { HttpService } from './../../../core/Services/http.service';
@@ -16,6 +17,7 @@ export class AddPostComponent implements OnInit {
 
   categories:any[] = [];
   file:any;
+  fileName:any;
   send:boolean = false;
 
 
@@ -31,7 +33,7 @@ export class AddPostComponent implements OnInit {
   })
 
 
-  constructor(private _AuthService:AuthService,private _HttpService:HttpService) { }
+  constructor(private _AuthService:AuthService,private _HttpService:HttpService,private _Router:Router) { }
 
   ngOnInit(): void {
     this._HttpService.Get(Categories.GetAllCategory).subscribe(res=>{
@@ -45,6 +47,11 @@ export class AddPostComponent implements OnInit {
   uploadPhoto(event:any){
     this.file=event.target.files[0];
     // console.log(this.file);
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',this.file,this.file.name);
+    this._HttpService.Post(savedFile.SavePhoto,formData).subscribe(res=>{
+       this.fileName = res.message;
+    })
   }
 
   create(form:FormGroup){
@@ -56,20 +63,16 @@ export class AddPostComponent implements OnInit {
       description : form.controls['description'].value,
       cateId : form.controls['cateId'].value,
       userId : this._AuthService.user['_value'].nameid,
-      photoName : ''
+      photoName : this.fileName
     }
 
-    const formData:FormData=new FormData();
-    formData.append('uploadedFile',this.file,this.file.name);
-    this._HttpService.Post(savedFile.SavePhoto,formData).subscribe(res=>{
-       data.photoName = res.message;
-    })
 
-    console.log(data);
+    // console.log(data);
 
 
     this._HttpService.Post(Posts.CreatePost,data).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
+      this._Router.navigate(['/post',data.cateId])
     })
 
 

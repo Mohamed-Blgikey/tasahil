@@ -1,7 +1,8 @@
+import { RegisterComponent } from './Auth/register/register.component';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { PostDetailsComponent } from './post/post-details/post-details.component';
 import { ValidUserGuard } from './../core/Guards/valid-user.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { PostComponent } from './post/post.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path:'addPost' , component:AddPostComponent},
   ]},
   {path:'login' , component:LoginComponent},
+  {path:'signup' , component:RegisterComponent},
 ];
 
 @NgModule({

@@ -67,7 +67,8 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
       applicationUserId : this.CurrentUserId
     }
     this._HttpService.Post(SavedPosts.Saved,post).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
+      this._HttpService.sPost.next((post.postId))
 
     })
     // console.log(post);
@@ -80,12 +81,12 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
       applicationUserId : this.CurrentUserId
     }
 
-    this._HttpService.Delete(SavedPosts.unSaved,post)
-    .subscribe(res=>{
+    // console.log(post);
+    this._HttpService.Delete(SavedPosts.unSaved,{postId:this.id,applicationUserId : this.CurrentUserId}).subscribe(res=>{
       console.log(res);
+
     })
 
-    // this.sub4.unsubscribe();
   }
 
   ngOnDestroy(): void {
