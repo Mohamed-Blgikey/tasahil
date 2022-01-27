@@ -75,11 +75,17 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
       postId:this.id,
       applicationUserId : this.CurrentUserId
     }
-    this._HttpService.Post(SavedPosts.Saved,post).subscribe(res=>{
+    this._HttpService.Post(SavedPosts.Saved,post).subscribe(
+      (res)=>{
       // console.log(res);
       this._HttpService.nPost.next((post.postId))
+    },
+      (error)=>{
+        alert("Post Already Saved!!");
 
-    })
+      }
+
+    )
     // console.log(post);
     // this.sub3.unsubscribe();
 
@@ -93,9 +99,14 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
     }
 
     // console.log(post);
-    this._HttpService.Post(SavedPosts.unSaved,post).subscribe(res=>{
+    this._HttpService.Post(SavedPosts.unSaved,post).subscribe(
+      res=>{
       // console.log(res);
       this._HttpService.nPost.next((post.postId))
+    },
+
+    error=>{
+      alert("Post Already UnSaved!!");
     })
 
   }
