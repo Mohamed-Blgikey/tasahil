@@ -51,8 +51,8 @@
 
 <section class="py-5">
   <div class="row">
-    <div style="cursor: pointer;" class="col-md-4 mt-5" *ngFor="let post of posts" [routerLink]="[ '/postDetails', post?.id ]">
-      <div class="post">
+    <div style="cursor: pointer;" class="col-md-4 mt-5 content" *ngFor="let post of posts">
+      <div class="post" [routerLink]="[ '/postDetails', post?.id ]">
         <div>
           <img [src]="imgPrefix+post?.photoName" alt="">
         </div>
@@ -63,9 +63,13 @@
           <div style="font-size: 21px; color: white;"> <i class="fas fa-comment" aria-hidden="true"></i> {{post?.comments?.length}} </div>
           </ng-template>
 
-      </div>
+        </div>
 
       </div>
+        <form class="delete" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" (ngSubmit)="deletePost(post)">
+          <button  class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+        </form>
+
 
     </div>
 

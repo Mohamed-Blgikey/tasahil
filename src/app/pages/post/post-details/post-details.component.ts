@@ -27,7 +27,7 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
   sub3:any;
   sub4:any;
   id:string = '';
-  CurrentUserId = '';
+  CurrentUserId:string = '';
 
 
   Comment:FormGroup = new FormGroup({

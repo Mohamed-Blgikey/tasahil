@@ -45,8 +45,8 @@
     <div class="mt-5 pt-5 px-2 rounded comments ">
       <div>
 
-        <!-- Satrt Make Comment -->
         <div style="background-color: rgba(255, 255, 255, 0.2);" class="p-2">
+          <!-- Satrt Make Comment -->
           <form [formGroup]="Comment" (ngSubmit)="createComment(Comment)" class="form rounded w-100  mb-1" >
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Comment</mat-label>
@@ -60,12 +60,15 @@
             </div>
 
           </form>
+          <!-- End Make Comment -->
+
+          <!-- Start confirm Edit Comment -->
           <div style="text-align: right !important;" *ngIf="editMood">
             <button (click)="confirmEditComment()" class="bg-warning text-white m-auto" [disabled]="Comment.invalid" mat-raised-button>Edit Comment</button>
         </div>
+          <!-- End confirm Edit Comment -->
       </div>
 
-          <!-- End Make Comment -->
 
         <div style="font-size: 30px;" class="bg-opBlack rounded p-3">Comments :    </div>
         <div class="w-100 py-5" *ngIf="!(comments.length > 0)">

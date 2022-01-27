@@ -74,6 +74,7 @@ export class AddPostComponent implements OnInit ,OnDestroy{
 
     this._HttpService.Post(Posts.CreatePost,data).subscribe(res=>{
       // console.log(res);
+      this.fileName = "";
       this._Router.navigate(['/post',data.cateId])
     })
 
@@ -92,7 +93,7 @@ export class AddPostComponent implements OnInit ,OnDestroy{
         name : this.fileName
       };
       this._HttpService.Post(savedFile.UnSavePhoto,photo).subscribe(res=>{
-        console.log(res);
+        // console.log(res);
       })
     }
   }

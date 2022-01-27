@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit ,OnDestroy{
       // console.log(res);
 
       if (res.message == 'Success') {
+        this.fileName = '';
         this._HttpService.nUser.next(res.token);
         this._rotue.navigate(['/login'])
       }
