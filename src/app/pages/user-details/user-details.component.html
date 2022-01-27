@@ -67,8 +67,12 @@
 
       </div>
         <form class="delete" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" (ngSubmit)="deletePost(post)">
-          <button  class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          <button  class="btn btn-danger text-dark"><i class="far fa-trash-alt"></i></button>
         </form>
+
+        <div class="edit" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" >
+          <a [routerLink]="['/editPost',post.id]"  class="btn btn-warning"><i class="far fa-edit"></i></a>
+        </div>
 
 
     </div>

@@ -1,0 +1,88 @@
+<div class="editPost">
+  <div class="pt-5">
+     <div style="font-size: 50px;">Add Post</div>
+   <form [formGroup]="editPost" (ngSubmit)="Edit(editPost)" class="form p-5 rounded w-100" >
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+       <mat-label>Title</mat-label>
+       <input formControlName='title' type="text" matInput >
+       <mat-error *ngIf="editPost.controls['title']?.hasError('required')">
+        Title is <strong>required</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['title']?.hasError('maxlength')" >
+        Max Length is <strong>50</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['title']?.hasError('minlength')">
+        Min Length is <strong>3</strong>
+       </mat-error>
+     </mat-form-field>
+
+
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+       <mat-label>Price</mat-label>
+       <input formControlName='price' type="number" matInput>
+       <mat-error *ngIf="editPost.controls['price']?.hasError('required')">
+        Price is <strong>required</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['price']?.hasError('max')" >
+        Price Length is <strong>1000000</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['price']?.hasError('min')">
+        Price Length is <strong>100</strong>
+       </mat-error>
+     </mat-form-field>
+
+
+     <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName='description'></textarea>
+      <mat-error *ngIf="editPost.controls['description']?.hasError('required')">
+        Description is <strong>required</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['description']?.hasError('maxlength')" >
+        Max Length is <strong>1000</strong>
+       </mat-error>
+
+       <mat-error *ngIf="editPost.controls['description']?.hasError('minlength')">
+        Min Length is <strong>5</strong>
+       </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="w-100 mb-4" appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName='cateId'>
+        <mat-option *ngFor="let category of categories" [value]="category.id"> {{category.name}}</mat-option>
+
+      </mat-select>
+      <mat-error *ngIf="editPost.controls['cateId']?.hasError('required')">
+        Category is <strong>required</strong>
+       </mat-error>
+    </mat-form-field>
+
+
+
+
+
+
+
+    <div class="form-group mb-4">
+      <input (change)="uploadPhoto($event)" style="background-color: rgba(0,0,0, 0.1); border: 0px;" class="form-control" type="file" formControlName='photoName'>
+      <div class="alert" *ngIf='editPost.get("photoName")?.errors != null && editPost.get("photoName")?.touched'  class="text-danger">
+        photoName is <strong>required</strong>
+
+      </div>
+    </div>
+    <!-- <div class="form-group" *ngIf="error">
+         <p class="text-danger">{{error}}</p>
+     </div> -->
+
+
+     <button class="w-100 bg-warning" [disabled]="editPost.invalid" mat-raised-button>Edit Post</button>
+   </form>
+  </div>
+ </div>

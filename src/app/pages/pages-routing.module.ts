@@ -1,3 +1,4 @@
+import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { RegisterComponent } from './Auth/register/register.component';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { PostDetailsComponent } from './post/post-details/post-details.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path:'postDetails/:id' , component:PostDetailsComponent},
     {path:'userDetails/:id' , component:UserDetailsComponent},
     {path:'addPost' , component:AddPostComponent},
+    {path:'editPost/:id' , component:EditPostComponent},
   ]},
   {path:'login' , component:LoginComponent},
   {path:'signup' , component:RegisterComponent},

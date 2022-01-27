@@ -18,7 +18,6 @@ export class AddPostComponent implements OnInit ,OnDestroy{
   categories:any[] = [];
   file:any;
   fileName:string = '';
-  send:boolean = false;
   sub1:any;
 
 

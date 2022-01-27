@@ -60,6 +60,7 @@ export class RegisterComponent implements OnInit ,OnDestroy{
   }
 
 
+  //upload File
   GetFile(event:any){
     this.stopAddunusablePhoto();
     this.file=event.target.files[0];

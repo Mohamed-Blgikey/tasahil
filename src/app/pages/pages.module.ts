@@ -11,6 +11,7 @@ import { LoginComponent } from './Auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { RegisterComponent } from './Auth/register/register.component';
+import { EditPostComponent } from './post/edit-post/edit-post.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './Auth/register/register.component';
     UserDetailsComponent,
     LoginComponent,
     AddPostComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditPostComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { RegisterComponent } from './Auth/register/register.component';
     UserDetailsComponent,
     LoginComponent,
     AddPostComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditPostComponent
   ]
 })
 export class PagesModule { }
