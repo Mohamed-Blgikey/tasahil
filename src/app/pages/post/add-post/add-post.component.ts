@@ -4,7 +4,7 @@ import { Categories } from './../../../core/Apis/Category';
 import { HttpService } from './../../../core/Services/http.service';
 import { AuthService } from 'src/app/core/Services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { savedFile } from 'src/app/core/Apis/saveFile';
 import { BehaviorSubject } from 'rxjs';
 
@@ -13,13 +13,13 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit ,OnDestroy{
 
   categories:any[] = [];
   file:any;
-  fileName:any;
+  fileName:string = '';
   send:boolean = false;
-
+  sub1:any;
 
 
   createPost:FormGroup = new FormGroup({
@@ -36,7 +36,7 @@ export class AddPostComponent implements OnInit {
   constructor(private _AuthService:AuthService,private _HttpService:HttpService,private _Router:Router) { }
 
   ngOnInit(): void {
-    this._HttpService.Get(Categories.GetAllCategory).subscribe(res=>{
+    this.sub1 = this._HttpService.Get(Categories.GetAllCategory).subscribe(res=>{
       this.categories = res.data;
       // console.log(this.categories);
     })
@@ -45,6 +45,7 @@ export class AddPostComponent implements OnInit {
 
 
   uploadPhoto(event:any){
+    this.stopAddunusablePhoto();
     this.file=event.target.files[0];
     // console.log(this.file);
     const formData:FormData=new FormData();
@@ -54,6 +55,7 @@ export class AddPostComponent implements OnInit {
     })
   }
 
+  // Add Post Method
   create(form:FormGroup){
 
     let data = {
@@ -77,5 +79,23 @@ export class AddPostComponent implements OnInit {
 
 
   }
+
+  ngOnDestroy(): void {
+      this.sub1.unsubscribe();
+      this.stopAddunusablePhoto();
+  }
+
+
+  private stopAddunusablePhoto(){
+    if (this.fileName.length > 0) {
+      let photo = {
+        name : this.fileName
+      };
+      this._HttpService.Post(savedFile.UnSavePhoto,photo).subscribe(res=>{
+        console.log(res);
+      })
+    }
+  }
+
 
 }
