@@ -93,9 +93,9 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
     }
 
     // console.log(post);
-    this._HttpService.Delete(SavedPosts.unSaved,{postId:this.id,applicationUserId : this.CurrentUserId}).subscribe(res=>{
-      console.log(res);
-
+    this._HttpService.Post(SavedPosts.unSaved,post).subscribe(res=>{
+      // console.log(res);
+      this._HttpService.nPost.next((post.postId))
     })
 
   }
