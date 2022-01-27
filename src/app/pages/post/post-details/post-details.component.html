@@ -44,6 +44,29 @@
   <div class="col-md-6 pt-3 mt-5">
     <div class="mt-5 pt-5 px-2 rounded comments ">
       <div>
+
+        <!-- Satrt Make Comment -->
+        <div style="background-color: rgba(255, 255, 255, 0.2);" class="p-2">
+          <form [formGroup]="Comment" (ngSubmit)="createComment(Comment)" class="form rounded w-100  mb-1" >
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Comment</mat-label>
+              <input formControlName='commentContent' type="text" matInput >
+              <mat-error *ngIf="Comment.controls['commentContent']?.hasError('required')">
+                Comment is <strong>required</strong>
+               </mat-error>
+            </mat-form-field>
+            <div style="text-align: right !important;" *ngIf="!editMood">
+                <button class="bg-info m-auto" [disabled]="Comment.invalid" mat-raised-button>Add Comment</button>
+            </div>
+
+          </form>
+          <div style="text-align: right !important;" *ngIf="editMood">
+            <button (click)="confirmEditComment()" class="bg-warning text-white m-auto" [disabled]="Comment.invalid" mat-raised-button>Edit Comment</button>
+        </div>
+      </div>
+
+          <!-- End Make Comment -->
+
         <div style="font-size: 30px;" class="bg-opBlack rounded p-3">Comments :    </div>
         <div class="w-100 py-5" *ngIf="!(comments.length > 0)">
           <div class="gradient-border mx-auto" id="box">0 Comments <i class=" ml-2 far fa-frown"></i></div>
@@ -63,8 +86,26 @@
               <div class="date">{{comment.commentDate|date:' MMM d,y- h:mm a'}}</div>
             </div>
 
-            <div class="content p-2 ">
-              {{comment.commentContent}}
+            <div class="content" style="overflow: hidden; display: flex; align-items: center; justify-content: space-between; ">
+              <p style="word-wrap: break-word; width: 80%;">{{comment.commentContent}}</p>
+
+              <div style="display: flex;">
+
+                <!-- strat edit Comment -->
+                <form *ngIf="CurrentUserId == comment.userId" (ngSubmit)="editComment(comment)">
+                 <button  class="btn edit"><i class="far fa-edit"></i></button>
+               </form>
+               <!-- End edit Comment -->
+
+
+                <!-- strat Delete Comment -->
+              <form *ngIf="CurrentUserId == comment.userId" (ngSubmit)="deleteComment(comment)">
+                <button  class="btn delete"><i class="far fa-trash-alt"></i></button>
+              </form>
+              <!-- End Delete Comment -->
+
+              </div>
+
             </div>
 
           </div>

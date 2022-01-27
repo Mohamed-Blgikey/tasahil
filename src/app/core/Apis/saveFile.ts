@@ -1,3 +1,4 @@
 export const savedFile = {
-  SavePhoto : '/SavePhoto'
+  SavePhoto : '/SavePhoto',
+  UnSavePhoto:'/UnSavePhoto'
 }

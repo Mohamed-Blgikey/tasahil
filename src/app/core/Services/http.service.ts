@@ -8,7 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-  sPost = new BehaviorSubject("");
+  nPost = new BehaviorSubject("");
+  nUser = new BehaviorSubject("");
+  nComment = new BehaviorSubject("");
 
   constructor(private http:HttpClient) { }
 
@@ -23,6 +25,10 @@ export class HttpService {
 
   Delete(endPoint:string,body:any = null):Observable<any>{
     return this.http.delete(this.fullPath(endPoint),body);
+  }
+
+  Put (endPoint:string,body:any = null):Observable<any>{
+    return this.http.put(this.fullPath(endPoint),body);
   }
 
 

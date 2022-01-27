@@ -20,3 +20,20 @@
 
   }
 }
+
+.delete
+{
+  transition: all 0.5s ease-in-out;
+  &:hover{
+    background-color: rgb(230, 69, 69);
+  }
+
+}
+
+.edit{
+  transition: all 0.5s ease-in-out;
+  &:hover{
+    background-color: rgb(214, 230, 69);
+  }
+
+}

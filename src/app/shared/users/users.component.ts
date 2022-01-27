@@ -17,9 +17,11 @@ export class UsersComponent implements OnInit {
   constructor(private _HttpService:HttpService) { }
 
   ngOnInit(): void {
-    this._HttpService.Get(Users.GetAllUser).subscribe(res=>{
-      this.users =res.data
-      // console.log(this.users);
+    this._HttpService.nUser.subscribe(()=>{
+      this._HttpService.Get(Users.GetAllUser).subscribe(res=>{
+        this.users =res.data
+        // console.log(this.users);
+      })
     })
     let box = document.querySelector('.sideBar')?.clientWidth;
     this.width = `-${box}px`;

@@ -21,7 +21,7 @@ export class SavedComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._HttpService.sPost.subscribe(()=>{
+  this._HttpService.nPost.subscribe(()=>{
       this._AuthService.user.subscribe(()=>{
         if (this._AuthService.user.getValue() != null) {
           this._HttpService.Get(SavedPosts.GetSaved).subscribe(res=>{

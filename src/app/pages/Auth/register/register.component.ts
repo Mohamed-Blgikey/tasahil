@@ -39,13 +39,14 @@ export class RegisterComponent implements OnInit {
       phone : form.controls['phone'].value,
       photoName : this.fileName
     }
-    console.log(data);
+    // console.log(data);
 
 
     this._HttpService.Post(Auth.Register,data ).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
 
       if (res.message == 'Success') {
+        this._HttpService.nUser.next(res.token);
         this._rotue.navigate(['/login'])
       }
       else
@@ -61,7 +62,7 @@ export class RegisterComponent implements OnInit {
     this.file=event.target.files[0];
     const formData:FormData=new FormData();
     formData.append('uploadedFile',this.file,this.file.name);
-   this._HttpService.Post(savedFile.SavePhoto,formData).subscribe(res=>{
+    this._HttpService.Post(savedFile.SavePhoto,formData).subscribe(res=>{
       this.fileName = res.message;
     })
     // console.log(this.fileName);
