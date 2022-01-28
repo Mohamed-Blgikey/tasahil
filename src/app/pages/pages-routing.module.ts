@@ -9,6 +9,7 @@ import { PostComponent } from './post/post.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes = [
   {path:'',canActivate:[ValidUserGuard],children:[
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path:'userDetails/:id' , component:UserDetailsComponent},
     {path:'addPost' , component:AddPostComponent},
     {path:'editPost/:id' , component:EditPostComponent},
+    {path:'access' , component:AccessDeniedComponent},
   ]},
   {path:'login' , component:LoginComponent},
   {path:'signup' , component:RegisterComponent},

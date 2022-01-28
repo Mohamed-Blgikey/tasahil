@@ -1,6 +1,6 @@
 <div class="py-5">
   <div class="mx-auto pt-5">
-    <button routerLink="/addPost" class="bg-info px-5 py-2 mt-5" style="font-weight: 900; color: white;" mat-raised-button>Add Post</button>
+    <button routerLink="/addPost" class="bg-info px-5 py-2 mt-5" style="font-weight: 900; color: white;" mat-raised-button>Add Post <i class="fas fa-plus-circle"></i></button>
   </div>
   <div class="py-5" *ngIf="!(posts.length > 0)">
     <div class="gradient-border mx-auto" id="box">0 Posts  <i class=" ml-2 far fa-frown"></i></div>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-4 text-center">
             <mat-card-actions>
-              <button [routerLink]="[ '/postDetails', post.id ]" mat-raised-button class="bg-info text-white">Comments</button>
+              <button [routerLink]="[ '/postDetails', post.id ]" mat-raised-button class="bg-info text-white">Comments <i class="fas fa-comment"></i></button>
             </mat-card-actions>
           </div>
         </div>

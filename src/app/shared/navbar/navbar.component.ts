@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   islogin:boolean = true;
+  isAdmin:boolean = true;
   categories:any;
   CurrentUserId = '';
   constructor(private _HttpService:HttpService,private _AuthService:AuthService) { }
@@ -19,10 +20,16 @@ export class NavbarComponent implements OnInit {
     this._AuthService.user.subscribe(()=>{
       if (this._AuthService.user.getValue() == null) {
         this.islogin = false;
+        this.isAdmin = false;
       }
       else{
         this.islogin = true;
         this.CurrentUserId = this._AuthService?.user['_value'].nameid;
+        if (this._AuthService.user['_value']?.roles?.includes("admin") || this._AuthService.user['_value']?.roles?.includes("ADMIN")) {
+          this.isAdmin = true;
+        }else{
+          this.isAdmin = false;
+        }
         // console.log(this.CurrentUserId);
       }
     })

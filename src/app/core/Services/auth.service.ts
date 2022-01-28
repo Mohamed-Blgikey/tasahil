@@ -13,12 +13,14 @@ export class AuthService {
     if (localStorage.getItem('userToken')) {
       this.saveUserData();
     }
-   }
 
+  //  console.log( this.user['_value']?.roles?.includes("user"));
+
+  }
   saveUserData(){
     let token:any = localStorage.getItem('userToken');
     this.user.next(jwtDecode(token))
-    // console.log(this.user);
+    // console.log(this.user.getValue());
   }
 
   logOut(){

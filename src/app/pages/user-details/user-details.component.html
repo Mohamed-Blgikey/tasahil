@@ -50,37 +50,39 @@
 
 
 <section class="py-5">
-  <div class="row">
-    <div style="cursor: pointer;" class="col-md-4 mt-5 content" *ngFor="let post of posts">
-      <div class="post" [routerLink]="[ '/postDetails', post?.id ]">
-        <div>
-          <img [src]="imgPrefix+post?.photoName" alt="">
-        </div>
-        <div class="caption">
+  <div style="width: 75% !important; margin: auto;">
+    <div class="row">
+      <div style="cursor: pointer;" class="col-md-4 mt-5 content" *ngFor="let post of posts">
+        <div class="post" [routerLink]="[ '/postDetails', post?.id ]">
+          <div>
+            <img [src]="imgPrefix+post?.photoName" alt="">
+          </div>
+          <div class="caption">
 
-          <div style="font-size: 21px; color: white;" *ngIf="post?.comments?.length == null;else name"> <i class="fas fa-comment" aria-hidden="true"></i> 0 </div>
-          <ng-template #name>
-          <div style="font-size: 21px; color: white;"> <i class="fas fa-comment" aria-hidden="true"></i> {{post?.comments?.length}} </div>
-          </ng-template>
+            <div style="font-size: 21px; color: white;" *ngIf="post?.comments?.length == null;else name"> <i class="fas fa-comment" aria-hidden="true"></i> 0 </div>
+            <ng-template #name>
+            <div style="font-size: 21px; color: white;"> <i class="fas fa-comment" aria-hidden="true"></i> {{post?.comments?.length}} </div>
+            </ng-template>
+
+          </div>
 
         </div>
+          <form class="delete" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" (ngSubmit)="deletePost(post)">
+            <button  class="btn btn-danger text-dark"><i class="far fa-trash-alt"></i></button>
+          </form>
+
+          <div class="edit" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" >
+            <a [routerLink]="['/editPost',post.id]"  class="btn btn-warning"><i class="far fa-edit"></i></a>
+          </div>
+
 
       </div>
-        <form class="delete" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" (ngSubmit)="deletePost(post)">
-          <button  class="btn btn-danger text-dark"><i class="far fa-trash-alt"></i></button>
-        </form>
 
-        <div class="edit" style="display: flex; justify-content: center; align-items: center;" *ngIf="CurrentUserId == post.userId" >
-          <a [routerLink]="['/editPost',post.id]"  class="btn btn-warning"><i class="far fa-edit"></i></a>
-        </div>
+
+
 
 
     </div>
-
-
-
-
-
   </div>
 </section>
 

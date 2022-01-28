@@ -1,3 +1,4 @@
+import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { PostDetailsComponent } from './post/post-details/post-details.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { RegisterComponent } from './Auth/register/register.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -23,14 +26,17 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
     LoginComponent,
     AddPostComponent,
     RegisterComponent,
-    EditPostComponent
+    EditPostComponent,
+    AccessDeniedComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AdminPanelModule
   ],
   exports: [
     HomeComponent,
@@ -40,7 +46,9 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
     LoginComponent,
     AddPostComponent,
     RegisterComponent,
-    EditPostComponent
+    EditPostComponent,
+    AccessDeniedComponent,
+    ErrorComponent
   ]
 })
 export class PagesModule { }
