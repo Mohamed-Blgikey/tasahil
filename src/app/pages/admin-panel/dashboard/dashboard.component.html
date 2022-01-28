@@ -1,11 +1,129 @@
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
+<div class="container h-100 ">
+
+  <div class="pt-5" style="width: 75%; margin: auto;">
+
+    <!-- Start Add Category -->
+    <div class="addCommponent rounded" [ngStyle]="{top:addCategoryMood?'50%':'-50%'}">
+      <div style="position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px;">
+          <button (click)="closeAddCategory()" class="bg-danger" mat-raised-button> <i class="fas fa-window-close"></i></button>
+        </div>
+        <form [formGroup]="categoryForm" class="form p-5 rounded w-100" (ngSubmit)="addCategory(categoryForm)">
+          <div style="font-size: 40px;" class="mb-3">Add Category</div>
+
+          <mat-form-field class="w-100 mb-4" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input formControlName='name' type="text" matInput  placeholder="Ex. Pa$$w0rd">
+          <mat-error *ngIf="categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button class="w-100 bg-info" [disabled]="categoryForm.invalid" mat-raised-button>Add</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- End Add Category -->
+
+    <!-- Start Edit Category -->
+    <div class="addCommponent rounded" [ngStyle]="{top:editCategoryMood?'50%':'-50%'}">
+      <div style="position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px;">
+          <button (click)="closeEditCategory()" class="bg-danger" mat-raised-button> <i class="fas fa-window-close"></i></button>
+        </div>
+        <form [formGroup]="categoryForm" class="form p-5 rounded w-100" (ngSubmit)="editCategory(categoryForm)">
+          <div style="font-size: 40px;" class="mb-3">Edit Category</div>
+
+          <mat-form-field class="w-100 mb-4" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input formControlName='name' type="text" matInput  placeholder="Ex. Pa$$w0rd">
+            <mat-error *ngIf="categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <button class="w-100 bg-warning" [disabled]="categoryForm.invalid" mat-raised-button>Edit</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- End Edit Category -->
+  <div class="pt-5">
+    <div class="row">
+
+      <div class="col-md-3 " >
+        <div>
+          <div class="rounded status">
+            <div class="text-center">
+              <div><i class="far fa-address-card mb-4"></i></div>
+            <div>post<sub>{{cPost}}</sub></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <div>
+
+          <div class="rounded status">
+            <div class="text-center">
+              <div><i class="fas fa-list mb-4"></i></div>
+            <div>category<sub>{{cCate}}</sub></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <div>
+          <div class="status rounded">
+            <div class="text-center">
+              <div><i class="fas fa-user mb-4"></i></div>
+              <div>User<sub>10</sub></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <div>
+          <div class="status rounded">
+            <div class="text-center">
+              <div><i class="fas fa-user-tie mb-4"></i></div>
+              <div>Admin<sub>10</sub></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row pt-5">
+      <!-- start Show Category -->
+      <div class="col-md-6">
+        <div class="h1 text-white">Categories :</div>
+        <button (click)="showAddCategory()" class="bg-info my-2 add" mat-raised-button>Add Category <i class="fas fa-plus-circle"></i></button>
+        <div *ngFor="let category of categories">
+          <div class="cate mb-4 p-2 rounded">
+            <div class="cateName">
+              {{category.name}}
+              </div>
+              <div class="icon">
+                <button class="bg-warning edit" (click)="showEditCategory(category)" mat-raised-button><i class="far fa-edit"></i></button> |
+                <button class="bg-danger delete" (click)="deleteCategory(category)" mat-raised-button><i class="far fa-trash-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Show Category -->
+
+    </div>
+  </div>
+</div>
+
+      </div>

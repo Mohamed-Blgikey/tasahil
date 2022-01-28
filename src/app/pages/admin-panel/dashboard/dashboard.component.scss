@@ -1,0 +1,71 @@
+.status{
+  width: 150px;
+  height: 150px;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  sub,i{
+    color:#0DCAF0;
+  }
+}
+
+.cate{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  color: white;
+
+  .edit{
+    color: white;
+    &:hover{
+      color: black;
+    }
+  }
+  .delete{
+    &:hover{
+      color: white;
+    }
+  }
+
+  .cateName{
+    font-size: 30px; font-weight: 600;
+  }
+}
+
+
+.add{
+  &:hover{
+    color: white;
+  }
+}
+
+
+
+.addCommponent{
+  position: absolute;
+  background-color: rgba($color: white, $alpha: 0.4);
+  transition: all 1s ease-in-out;
+  z-index: 999;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+@media screen and (max-width:800px) {
+  .status{
+    width: 110px;
+    height: 110px;
+    font-size: 20px;
+  }
+
+  .cateName{
+    font-size: 15px !important;
+  }
+}

@@ -11,6 +11,7 @@ export class HttpService {
   nPost = new BehaviorSubject("");
   nUser = new BehaviorSubject("");
   nComment = new BehaviorSubject("");
+  nCate = new BehaviorSubject("");
 
   constructor(private http:HttpClient) { }
 

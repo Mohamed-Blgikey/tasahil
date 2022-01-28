@@ -33,9 +33,12 @@ export class NavbarComponent implements OnInit {
         // console.log(this.CurrentUserId);
       }
     })
-    this._HttpService.Get(Categories.GetAllCategory).subscribe(res=>{
-      // console.log(res.data);
-      this.categories = res.data;
+
+    this._HttpService.nCate.subscribe(()=>{
+      this._HttpService.Get(Categories.GetAllCategory).subscribe(res=>{
+        // console.log(res.data);
+        this.categories = res.data;
+      })
     })
   }
 
