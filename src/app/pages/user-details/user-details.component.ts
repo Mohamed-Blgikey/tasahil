@@ -14,6 +14,7 @@ import { savedFile } from 'src/app/core/Apis/saveFile';
 })
 export class UserDetailsComponent implements OnInit,OnDestroy {
 
+  isLoading:boolean = true;
   CurrentUserId:string = '';
   imgPrefix = environment.PhotoUrl;
   userId:string = '';
@@ -48,7 +49,7 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
         this.user = res.data[0];
 
         this.posts = this.user.posts;
-
+        this.isLoading = false;
         // console.log(this.user);
         // console.log(this.posts);
 

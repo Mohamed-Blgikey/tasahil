@@ -11,7 +11,7 @@ import { Posts } from 'src/app/core/Apis/Posts';
 })
 export class PostComponent implements OnInit ,OnDestroy{
 
-
+  isLoading:boolean = true;
   imgPrefix:string = environment.PhotoUrl;
   posts:any[] = [];
   sub1:any;
@@ -29,6 +29,8 @@ export class PostComponent implements OnInit ,OnDestroy{
         // console.log(res.data);
         this.posts = res.data;
         this.posts = this.posts.filter(p=>p.cateId == this.id)
+
+          this.isLoading = false;
           // console.log(this.posts);
       })
     })

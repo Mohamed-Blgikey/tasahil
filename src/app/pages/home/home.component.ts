@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit ,OnDestroy{
+  isLoading:boolean = true;
   imgPrefix:string = environment.PhotoUrl;
   posts:any[] = [];
   sub:any;
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit ,OnDestroy{
     this.sub = this._HttpService.Get(Posts.GetAllPosts).subscribe(res=>{
       // console.log(res.data);
       this.posts = res.data;
+        this.isLoading = false;
     })
   }
 

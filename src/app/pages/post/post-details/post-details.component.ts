@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PostDetailsComponent implements OnInit,OnDestroy {
 
-
+  isLoading:boolean = true;
   editMood:boolean = false;
   imgPrefix:string = environment.PhotoUrl;
   post:any;
@@ -60,6 +60,7 @@ export class PostDetailsComponent implements OnInit,OnDestroy {
           this.comments = res.data;
           this.comments = this.comments.filter(c=>c.postId == this.id)
           // console.log(this.comments);
+            this.isLoading = false;
         })
       })
 

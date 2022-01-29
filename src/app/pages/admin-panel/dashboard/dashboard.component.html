@@ -1,3 +1,14 @@
+<div class="loading" [ngStyle]="{display:postLoad || cateLoad || userLoad?'block':'none'}">
+  <div id="load">
+    <div>G</div>
+    <div>N</div>
+    <div>I</div>
+    <div>D</div>
+    <div>A</div>
+    <div>O</div>
+    <div>L</div>
+  </div>
+</div>
 <div class="container h-100 ">
 
   <div class="pt-5" style="width: 75%; margin: auto;">
@@ -48,10 +59,45 @@
         </form>
       </div>
     </div>
-
-
     <!-- End Edit Category -->
+
+
+    <!-- Start Edit Roles -->
+    <div class="addCommponent rounded" [ngStyle]="{top:editUserRoleMood?'50%':'-50%'}">
+      <div style="position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px;">
+          <button (click)="closeEditUserRole()" class="bg-danger" mat-raised-button> <i class="fas fa-window-close"></i></button>
+        </div>
+        <form [formGroup]="RolesForm" class="form p-5 rounded w-100" (ngSubmit)="editUserRole(RolesForm)">
+          <div style="font-size: 40px;" class="mb-3">Edit User Roles</div>
+
+          <mat-form-field class="w-100 mb-4" appearance="fill">
+            <mat-label>User Name</mat-label>
+            <input formControlName='userName' type="text" matInput >
+            <mat-error *ngIf="RolesForm.get('userName')?.hasError('required') && RolesForm.get('userName')?.touched">
+              User Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100 mb-4" appearance="fill">
+            <mat-label>Role Name</mat-label>
+            <input formControlName='roleName' type="text" matInput  placeholder="user or USER or admin or ADMIN">
+            <mat-error *ngIf="RolesForm.get('roleName')?.hasError('required') && RolesForm.get('roleName')?.touched">
+              Role Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <p class="text-danger" *ngIf="error">{{error}}</p>
+
+          <button class="w-100 bg-warning" [disabled]="RolesForm.invalid" mat-raised-button>Edit</button>
+        </form>
+      </div>
+    </div>
+    <!-- End Edit Roles -->
+
+
   <div class="pt-5">
+    <!-- start status -->
     <div class="row">
 
       <div class="col-md-3 " >
@@ -83,7 +129,7 @@
           <div class="status rounded">
             <div class="text-center">
               <div><i class="fas fa-user mb-4"></i></div>
-              <div>User<sub>10</sub></div>
+              <div>User<sub>{{cUser}}</sub></div>
             </div>
           </div>
 
@@ -95,17 +141,20 @@
           <div class="status rounded">
             <div class="text-center">
               <div><i class="fas fa-user-tie mb-4"></i></div>
-              <div>Admin<sub>10</sub></div>
+              <div>Admin<sub>{{cAdmin}}</sub></div>
             </div>
           </div>
 
         </div>
       </div>
     </div>
+    <!-- End status -->
+
 
     <div class="row pt-5">
+
       <!-- start Show Category -->
-      <div class="col-md-6">
+        <div class="col-md-6" style="height: 300px; overflow-y: auto; ">
         <div class="h1 text-white">Categories :</div>
         <button (click)="showAddCategory()" class="bg-info my-2 add" mat-raised-button>Add Category <i class="fas fa-plus-circle"></i></button>
         <div *ngFor="let category of categories">
@@ -122,7 +171,68 @@
         </div>
         <!-- End Show Category -->
 
+        <!-- start Show Roles -->
+        <div class="col-md-6" style="height: 300px; overflow-y: auto; ">
+
+        <div class="h1 text-white">Roles :</div>
+        <div *ngFor="let admin of admins">
+          <div class="cate mb-4 p-2 rounded admin">
+            <div class="cateName">
+              <img src="../../../../assets/image/admin.jpg" alt=""> {{admin.userName}}
+              </div>
+              <div class="icon">
+                <button class="bg-warning edit" (click)="showEditUserRole(admin)" mat-raised-button><i class="far fa-edit"></i></button> |
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let user of normalUsers">
+            <div class="cate mb-4 p-2 rounded admin">
+              <div class="cateName">
+                <img src="../../../../assets/image/User.png" alt=""> {{user.userName}}
+                </div>
+                <div class="icon">
+                  <button class="bg-warning edit" (click)="showEditUserRole(user)" mat-raised-button><i class="far fa-edit"></i></button> |
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+        <!-- End Show Roles -->
     </div>
+
+
+    <section class="py-5">
+      <div>
+        <div class="h1 text-white"> All Posts :</div>
+        <div class="row" style="justify-content: center;">
+          <div style="cursor: pointer;" class="col-md-4 mt-5 content" *ngFor="let post of posts">
+            <div class="post" [routerLink]="[ '/postDetails', post?.id ]">
+              <div>
+                <img [src]="imgPrefix+post?.photoName" alt="">
+              </div>
+              <div class="caption">
+
+                <div style="font-size: 21px; color: white;" *ngIf="post?.comments?.length == null;else name"> <i class="fas fa-comment" aria-hidden="true"></i> 0 </div>
+                <ng-template #name>
+                <div style="font-size: 21px; color: white;"> <i class="fas fa-comment" aria-hidden="true"></i> {{post?.comments?.length}} </div>
+                </ng-template>
+
+              </div>
+
+            </div>
+              <div class="delete" style="display: flex; justify-content: center; align-items: center;">
+                <button (click)="deletePost(post)"  class="btn btn-danger text-dark"><i class="far fa-trash-alt"></i></button>
+              </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
