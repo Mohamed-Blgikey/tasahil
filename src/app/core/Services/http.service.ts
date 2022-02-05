@@ -16,7 +16,12 @@ export class HttpService {
   constructor(private http:HttpClient) { }
 
   Get(endPoint:string):Observable<any>{
-    return this.http.get(this.fullPath(endPoint));
+    let token = localStorage.getItem('userToken')
+    let header = {
+      headers: new HttpHeaders()
+      .set('Authorization',  `Bearer ${token}`)
+    }
+    return this.http.get(this.fullPath(endPoint),header);
   }
 
 
